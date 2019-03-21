@@ -1,0 +1,157 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: green;
+    height: 10vh;
+}
+
+header h1 {
+    color: white;
+    font-size: 7vh;
+}
+
+#main {
+    height: 90vh;
+}
+
+map-box {
+    position: relative;
+    height: 88vh;
+}
+
+map-box h2 {
+    display: inline-block;
+    position: absolute;
+    margin: 2vh 5vmax;
+    font-size: 4vmin;
+}
+
+map-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(./img/map.jpg);
+    filter: blur(8px);
+    z-index: -2;
+}
+
+#mapid {
+    width: 80%;
+    height: 70vh;
+    margin: 10vh auto;
+}
+
+@media (max-width: 575.98px) {
+    #mapid {
+        height: 80vh;
+        margin: 8vh auto;
+    }
+    map-box h2 {
+        font-size: 6vmin;
+    }
+}
+
+#mapid p {
+    margin: 0;
+    padding: 0;
+}
+
+.popup-name {
+    font-weight: bold;
+}
+
+/* LOGIN PANEL */
+
+login-panel {
+    background-size: 20vmax;
+    text-align: center;
+}
+
+#main .row .col-sm-5 {
+    padding: 0;
+}
+
+#login-panel-menu {
+    width: 100%;
+    margin: 0;
+}
+
+login-panel form {
+    border: 1px solid white;
+    border-radius: 2vh;
+    text-align: left;
+    color: white;
+    padding: 2vmax 5vmax;
+    margin: 3vmax;
+}
+
+login-panel .btn {
+    border-radius: 0px;
+}
+
+login-panel form input {
+    width: 100%;
+    margin: .5vmin auto;
+}
+
+#login_form form {
+    background-color: rgba(11, 97, 254, 0.9);
+}
+
+#signin_form form {
+    background-color: rgba(36, 180, 0, 0.9);
+}
+
+[type="date"] {
+    background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+/* GAME SECTION */
+.game {
+    width: 80%;
+    box-sizing: border-box;
+    background-color: lightgreen;
+    border-radius: 1vh;
+    padding: 1vh;
+    margin: 1vh;
+}
+
+.game p {
+    margin: 0;
+    padding: 0;
+}
+
+/* FOOTER */
+
+footer {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    width: 100vw;
+    height: 2vh;
+    color: white;
+    text-align: center;
+    font-size: 1.5vh;
+    background-color: green;
+}
+
+.err {
+    color: rgb(255, 95, 95);
+}

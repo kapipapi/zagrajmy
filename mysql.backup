@@ -1,0 +1,99 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Czas generowania: 21 Mar 2019, 22:00
+-- Wersja serwera: 5.7.25
+-- Wersja PHP: 7.3.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Baza danych: `zagrajmy`
+--
+CREATE DATABASE IF NOT EXISTS `zagrajmy` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `zagrajmy`;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `games`
+--
+
+CREATE TABLE `games` (
+  `id` int(11) NOT NULL,
+  `sport` text NOT NULL,
+  `miejsce` text NOT NULL,
+  `data` date NOT NULL,
+  `lista` json NOT NULL,
+  `info` json NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Zrzut danych tabeli `games`
+--
+
+INSERT INTO `games` (`id`, `sport`, `miejsce`, `data`, `lista`, `info`) VALUES
+(1, 'voleyball', 'wwa002', '2019-02-28', '{}', '{\"teamsize\": \"4\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}'),
+(2, 'basketball', 'wwa003', '2019-03-15', '{}', '{\"teamsize\": \"4\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}'),
+(3, 'basketball', 'wwa002', '2019-03-13', '{}', '{\"teamsize\": \"9\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `imie` text NOT NULL,
+  `nazwisko` text NOT NULL,
+  `login` text NOT NULL,
+  `email` text NOT NULL,
+  `haslo` text NOT NULL,
+  `sporty` json NOT NULL,
+  `urodziny` date NOT NULL,
+  `info` json NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`id`, `imie`, `nazwisko`, `login`, `email`, `haslo`, `sporty`, `urodziny`, `info`) VALUES
+(5, 'Kacper', 'Ledwosiński', '', 'kacper@test.pl', '$1$MCi5uwSU$SPaIiVxJxgSNJh2ZplWbT/', '[[\"basketball\", 1], [\"tenis\", 2]]', '1999-05-16', '{}'),
+(6, 'Konrad', 'Ludwik', '', 'konrad@test.pl', '$1$9G8q3Hyy$EU./acn4gi2aS0zA2xPnl/', '[[\"basketball\", \"2\"], [\"golf\", \"4\"], [\"tenis\", \"3\"]]', '2010-07-30', '{}');
+
+--
+-- Indeksy dla zrzutów tabel
+--
+
+--
+-- Indeksy dla tabeli `games`
+--
+ALTER TABLE `games`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT dla tabeli `games`
+--
+ALTER TABLE `games`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT dla tabeli `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
