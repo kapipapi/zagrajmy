@@ -41,6 +41,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             echo "<h1>Witaj " . $_SESSION['email'] . "</h1>"; 
             echo "<p>[<a href='logout.php'>Wyloguj się</a>]</p>";
             echo "<p>[<a href='game_make.php'>Strórz grę!</a>]</p>";
+            echo "<p>[<a href='friends_finder.php'>Znajdź znajomych!</a>]</p>";
             echo "<hr/>";
             if(isset($_SESSION['sporty'])){
                 echo "<h3>Twoje sporty:</h3><ul>";
@@ -50,8 +51,9 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
                 echo "</ul>";
             }
             echo "<hr/>";
-            echo "<h3>Gry w okolicy:</h3>";
             require_once('load_games.php');
+            require_once('load_friends.php');
+            mysqli_free_result($result);
             ?>
         </div>
         <map-box class="col-sm" id="user_map">

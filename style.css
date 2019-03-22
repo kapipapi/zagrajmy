@@ -136,6 +136,22 @@ login-panel form input {
     padding: 0;
 }
 
+/* FRIENDS SECTION */
+.friend {
+    width: 80%;
+    box-sizing: border-box;
+    background-color: lightsalmon;
+    border-radius: 1vh;
+    padding: 1vh;
+    margin: 1vh;
+}
+
+.friend p {
+    margin: 0;
+    padding: 0;
+}
+
+
 /* FOOTER */
 
 footer {

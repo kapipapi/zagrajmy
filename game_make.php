@@ -87,7 +87,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             <hr/>
             <div class="form-group">
                 <label>Ile osób będzie uczestniczyło w grze?</label>
-                <input type="range" class="custom-range" min="2" max="10" name="teamsize" onmousemove="showVal(this.value)">
+                <input id="playersInput" type="range" class="custom-range" min="2" max="10" name="teamsize">
                 <span id='counter_show'>6</span>
             </div>
             <hr/>
@@ -117,10 +117,12 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
 </div>
 
 <script>
-    function showVal(n) {
-        document.getElementById('counter_show').innerHTML = n;
-    }
-
+    window.addEventListener('DOMContentLoaded', (event) => {
+        let range = document.getElementById('playersInput');
+        range.addEventListener('input', ()=>{
+            document.getElementById('counter_show').innerHTML = range.value;
+        })
+    });
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <script src="./scripts/script.js"></script>
