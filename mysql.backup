@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Czas generowania: 21 Mar 2019, 22:00
+-- Czas generowania: 22 Mar 2019, 15:07
 -- Wersja serwera: 5.7.25
 -- Wersja PHP: 7.3.1
 
@@ -13,8 +13,6 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `zagrajmy`
 --
-CREATE DATABASE IF NOT EXISTS `zagrajmy` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `zagrajmy`;
 
 -- --------------------------------------------------------
 
@@ -38,7 +36,9 @@ CREATE TABLE `games` (
 INSERT INTO `games` (`id`, `sport`, `miejsce`, `data`, `lista`, `info`) VALUES
 (1, 'voleyball', 'wwa002', '2019-02-28', '{}', '{\"teamsize\": \"4\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}'),
 (2, 'basketball', 'wwa003', '2019-03-15', '{}', '{\"teamsize\": \"4\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}'),
-(3, 'basketball', 'wwa002', '2019-03-13', '{}', '{\"teamsize\": \"9\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}');
+(3, 'basketball', 'wwa002', '2019-03-13', '{}', '{\"teamsize\": \"9\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}'),
+(4, 'basketball', 'wwa003', '2019-03-06', '{}', '{\"teamsize\": \"9\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}'),
+(5, 'basketball', 'wwa002', '2018-12-06', '{}', '{\"teamsize\": \"8\", \"makername\": \"Kacper\", \"makeremail\": \"kacper@test.pl\"}');
 
 -- --------------------------------------------------------
 
@@ -63,8 +63,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `imie`, `nazwisko`, `login`, `email`, `haslo`, `sporty`, `urodziny`, `info`) VALUES
-(5, 'Kacper', 'Ledwosiński', '', 'kacper@test.pl', '$1$MCi5uwSU$SPaIiVxJxgSNJh2ZplWbT/', '[[\"basketball\", 1], [\"tenis\", 2]]', '1999-05-16', '{}'),
-(6, 'Konrad', 'Ludwik', '', 'konrad@test.pl', '$1$9G8q3Hyy$EU./acn4gi2aS0zA2xPnl/', '[[\"basketball\", \"2\"], [\"golf\", \"4\"], [\"tenis\", \"3\"]]', '2010-07-30', '{}');
+(13, 'Kacper', 'Ledwosiński', '', 'kacper@test.pl', '$1$4X6IRxDI$yQQKZ6AWtCUAWq.qfWoEm/', '[[\"basketball\", \"2\"], [\"joga\", \"3\"]]', '1999-05-16', '{\"other\": \"\", \"friends\": [{\"id\": \"14\", \"name\": \"Konrad\", \"surname\": \"Ludwikowski\"}]}'),
+(14, 'Konrad', 'Ludwikowski', '', 'konrad@test.pl', '$1$/OtIAJoV$BZr2r6ELOIRTRs6w44MMZ.', '[[\"basketball\", \"2\"], [\"joga\", \"3\"]]', '1999-07-14', '{\"other\": \"\", \"friends\": [{\"id\": \"13\", \"name\": \"Kacper\", \"surname\": \"Ledwosiu0144ski\"}]}'),
+(15, 'Bonifacy', 'Grobowski', '', 'bonifacy@test.pl', '$1$P4w2NznQ$paMDCj.6RKQGmehBTXmfi1', '[[\"joga\", \"4\"]]', '2019-03-22', '{\"other\": \"\", \"friends\": []}');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -90,10 +91,10 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
