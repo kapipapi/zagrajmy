@@ -69,14 +69,12 @@ if ($result = $conn->query($sql)) {
 }
 foreach($users as $u) {
     echo "<div class='user_friend'>";
-    // echo "<form action='friend_add.php' method='post'>";
     echo "<div class='row'>";
     echo "<div class='col-sm'>".$u["id"]."</div>";
     echo "<div class='col-sm'>".$u["imie"]."</div>";
     echo "<div class='col-sm'>".$u["nazwisko"]."</div>";
-    echo "<div class='col-sm'><a href='game_make_engine.php?id=".$u["id"]."'><input class='btn btn-success float-right' type='submit' value='Dodaj do znajomych'></a></div>";
+    echo "<div class='col-sm'><a href='friends_finder_engine.php?id=".$u["id"]."'><input class='btn btn-success float-right' type='submit' value='Dodaj do znajomych'></a></div>";
     echo "</div>";
-    // echo "</form>";
     echo "</div>";
 }
 $result->free_result();

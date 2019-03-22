@@ -54,6 +54,10 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
     .custom-range {
         width: 80%;
     }
+    
+    .friend{
+        padding-left: 10%;
+    }
 
     </style>
 </head>
@@ -106,6 +110,18 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
                     }
                 ?>
                 </select>
+            </div>
+            <div class="form-group">
+                <label>Kogo ze znajomych chcesz zaprosić?</label></br>
+                <?php
+                    $friends = json_decode($_SESSION['info'])->friends;
+                    foreach($friends as $f) {
+                        echo "<div class='friend'>";
+                        echo "<input class='form-check-input' type='checkbox' value='".$f->id."' name='id'>";
+                        echo "<label class='form-check-label'>".$f->name." ". $f->surname . "</label>";
+                        echo "</div>";
+                    }
+                ?>
             </div>
             <a href="user_panel.php"><input class="btn btn-danger" value="Anuluj"></a>
             <input class="btn btn-success" type="submit" value="Dodaj grę">
