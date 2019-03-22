@@ -92,6 +92,15 @@ $json_user_sports = json_encode($user_sports);
 // BIRTHDAY
 $user_birthday = $_POST['dateofbirth'];
 
+// INFO
+class Info{
+    public $friends = array();
+    public $other = "";
+}
+
+$user_info = new Info();
+$infoJSON = json_encode($user_info);
+
 // ACCEPTATION
 if (!$signin_err) {
     $sql = "INSERT INTO `users` (
@@ -113,7 +122,7 @@ if (!$signin_err) {
             '$pass',
             '$json_user_sports',
             '$user_birthday',
-            '{}'
+            '$infoJSON'
             );";
     if (!$conn->query($sql)) {
         $_SESSION['signin_err'][0] = "Operacja nie powiodła się :(";

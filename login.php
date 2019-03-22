@@ -27,9 +27,11 @@ if ($result = $conn->query($sql)) {
             if (password_verify($pass, $row['haslo'])) {
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['name'] = $row['imie'];
+                $_SESSION['surname'] = $row['nazwisko'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['pass'] = $row['haslo'];
                 $_SESSION['sporty'] = $row['sporty'];
+                $_SESSION['info'] = $row['info'];
                 $result->free_result();
                 header("Location: user_panel.php");
             }
