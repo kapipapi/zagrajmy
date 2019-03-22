@@ -18,12 +18,29 @@ if ($result = $conn->query($sql)) {
                 "sport" => $row['sport'],
                 "place" => $row['miejsce'],
                 "date" => $row['data'],
+                "lista" => $row['lista'],
                 "info" => $row['info']
             );
             array_push($games, $game);
         }
     }
     $result->free_result();
+}
+
+function getPlayer($id_list) {
+    require('connect.php');
+    $playerSql = "SELECT * FROM users WHERE id = " . $id_list;
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_errno);
+    }
+    if ($result = $conn->query($playerSql)) {
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo $row['imie'] . " " . $row['nazwisko'];
+            }
+        }
+    }
 }
 
 if(sizeof($games)>0){
@@ -40,6 +57,18 @@ if(sizeof($games)>0){
             }
         }
         echo "<p>" . $g["date"] . "</p>";
+        echo "<ol>";
+        $lista = json_decode($g['lista']);
+        for($i=1; $i <= sizeof($lista); $i++) {
+            echo "<li>";
+            getPlayer($lista[$i-1]);
+            echo "</li>";
+        }
+        $iloscMiejsc = json_decode($g['info'])->teamsize;
+        for($i=sizeof($lista)+1; $i <= $iloscMiejsc; $i++) {
+            echo "<li>...</li>";
+        }
+        echo "</ol>";
         echo "</div>";
     }
 }

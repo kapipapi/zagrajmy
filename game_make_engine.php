@@ -45,6 +45,18 @@ if(empty($_POST['place'])) {
 } else {
     $place = $_POST['place'];
 }
+
+// PLAYER LIST
+$playerList = array();
+array_push($playerList, $_SESSION['id']);
+if(!empty($_POST['friend_id'])){
+    foreach($_POST['friend_id'] as $f) {
+        array_push($playerList, $f);
+    }
+}
+$playerListJSON = json_encode($playerList);
+
+//Maker info
 $infoJSON->makername = $_SESSION['name'];
 $infoJSON->makeremail = $_SESSION['email'];
 $infoJSON->teamsize = $teamsize;
@@ -64,7 +76,7 @@ if (!$make_game_err) {
             '$sport',
             '$place',
             '$data', 
-            '{}',
+            '$playerListJSON',
             '$infoTEXT'
             );";
     if (!$conn->query($sql)) {
