@@ -82,8 +82,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             </div>
             <div class="form-group">
                 <?php
-                $sports = json_decode(file_get_contents('./scripts/json/sporty.json'));
-                foreach($sports as $s) {
+                foreach(json_decode(file_get_contents('./scripts/json/sporty.json')) as $s) {
                     echo" <label class='sport_radio'><input type='radio' name='sport' value='$s'><img src='./img/sports/$s.png'/><p>$s</p></label>";
                 }
                 ?>

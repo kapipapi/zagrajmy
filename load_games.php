@@ -47,7 +47,7 @@ if(sizeof($games)>0){
     echo "<h3>Gry w okolicy:</h3>";
     foreach($games as $g) {
         echo "<div class='game'>";
-        echo "<p>" . $g["sport"] . "</p>";
+        echo "<h2>" . $g["sport"] . "</h2>";
         $boiska = json_decode(file_get_contents('./scripts/json/boiska.json'));
         foreach($boiska as $b) {
             if($b[0] == $g["place"]) {

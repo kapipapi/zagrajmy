@@ -65,7 +65,6 @@ if ($result = $conn->query($sql)) {
             array_push($users, $user);
         }
     }
-    $result->free_result();
 }
 foreach($users as $u) {
     echo "<div class='user_friend'>";

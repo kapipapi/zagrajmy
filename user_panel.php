@@ -53,7 +53,6 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             echo "<hr/>";
             require_once('load_games.php');
             require_once('load_friends.php');
-            mysqli_free_result($result);
             ?>
         </div>
         <map-box class="col-sm" id="user_map">
