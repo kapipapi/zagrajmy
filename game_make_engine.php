@@ -35,7 +35,7 @@ if(empty($_POST['dateofgame'])) {
     $_SESSION['make_game_err'][1] = "Dzień wymagany";
     $make_game_err = true;
 } else {
-    $data = $_POST['dateofgame'];
+    $date = $_POST['dateofgame'];
 }
 
 //PLACE
@@ -67,15 +67,15 @@ if (!$make_game_err) {
     $sql = "INSERT INTO `games` (
         `id`,
         `sport`,
-        `miejsce`,
-        `data`,
-        `lista`,
+        `place`,
+        `date`,
+        `list`,
         `info`
         ) VALUES (
             NULL,
             '$sport',
             '$place',
-            '$data', 
+            '$date', 
             '$playerListJSON',
             '$infoTEXT'
             );";

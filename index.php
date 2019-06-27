@@ -25,13 +25,22 @@ if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     <link rel="stylesheet" href="style.css" type="text/css" />
+    <style>
+    nav {
+        margin-bottom: 0vh;
+    }
+    </style>
 </head>
 
 <body>
 
-    <header class='container-fluid'>
-        <a href="./index.php"><h1>ZagrajMY</h1></a>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class='container-fluid'>
+            <div class="navbar-header">
+                <a class='h1' href="./index.php">ZagrajMy</a>
+            </div>
+        </div>
+    </nav>
 
     <div id='main' class='container-fluid'>
         <div class='row'>
@@ -78,9 +87,9 @@ if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
                             <h3>Rejestracja:</h3>
                             <div class="form-group">
                                 <label for="userEmail">Imie</label>
-                                <input type="text" name="imie" placeholder="Imię" class="form-control">
+                                <input type="text" name="name" placeholder="Imię" class="form-control">
                                 <label for="userEmail">Nazwisko:</label>
-                                <input type="text" name="nazwisko" placeholder="Nazwisko" class="form-control">
+                                <input type="text" name="surname" placeholder="Nazwisko" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="userEmail">E-mail:</label>
@@ -118,7 +127,7 @@ if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
                             <hr/>
                             <div class="form-group">
                                 <label for="userPassword">Data urodzenia:</label>
-                                <input type="date" name="dateofbirth" id="dateofbirth">
+                                <input type='date' name='dateofbirth'>
                             </div>
                             <div class="form-group">
                                 <?php

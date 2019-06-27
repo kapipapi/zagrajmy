@@ -24,14 +24,15 @@ $login_err = false;
 if ($result = $conn->query($sql)) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            if (password_verify($pass, $row['haslo'])) {
+            if (password_verify($pass, $row['pass'])) {
                 $_SESSION['id'] = $row['id'];
-                $_SESSION['name'] = $row['imie'];
-                $_SESSION['surname'] = $row['nazwisko'];
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['surname'] = $row['surname'];
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['pass'] = $row['haslo'];
-                $_SESSION['sporty'] = $row['sporty'];
+                $_SESSION['pass'] = $row['pass'];
+                $_SESSION['sports'] = $row['sports'];
                 $_SESSION['info'] = $row['info'];
+                $_SESSION['friends'] = $row['friends'];
                 $result->free_result();
                 header("Location: user_panel.php");
             }

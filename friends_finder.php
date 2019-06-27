@@ -32,25 +32,28 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
 </head>
 <body>
 
-<header class='container-fluid'>
-    <a href="./index.php"><h1>ZagrajMY</h1></a>
-</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class='container-fluid'>
+        <div class="navbar-header">
+            <a class='h1' href="./index.php">ZagrajMy</a>
+        </div>
+    </div>
+</nav>
 
 <div id='main' class='container'>
 <?php
 
 echo "<p>[<a href='user_panel.php'><-Powrót</a>]</p>";
 
-$info = json_decode($_SESSION['info']);
-$friends = $info->friends;
+$friends = json_decode($_SESSION['friends']);
 $friendsIDsql = " ";
 
 foreach($friends as $f) {
-    $friendsIDsql = $friendsIDsql . "AND id != " . $f->id . " ";
+    $friendsIDsql = $friendsIDsql . "AND id != " . $f . " ";
 }
 
 require_once('connect.php');
-$sql = "SELECT * FROM users WHERE email NOT LIKE '". $_SESSION['email'] ."'".$friendsIDsql."ORDER BY imie ASC LIMIT 100";
+$sql = "SELECT * FROM users WHERE email NOT LIKE '". $_SESSION['email'] ."'".$friendsIDsql."ORDER BY name ASC LIMIT 3";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) { die("Connection failed: " . $conn->connect_errno);}
 if ($result = $conn->query($sql)) {
@@ -59,24 +62,30 @@ if ($result = $conn->query($sql)) {
         while ($row = $result->fetch_assoc()) {
             $user = array(
                 "id" => $row['id'],
-                "imie" => $row['imie'],
-                "nazwisko" => $row['nazwisko']
+                "name" => $row['name'],
+                "surname" => $row['surname']
             );
             array_push($users, $user);
         }
     }
 }
-foreach($users as $u) {
-    echo "<div class='user_friend'>";
-    echo "<div class='row'>";
-    echo "<div class='col-sm'>".$u["id"]."</div>";
-    echo "<div class='col-sm'>".$u["imie"]."</div>";
-    echo "<div class='col-sm'>".$u["nazwisko"]."</div>";
-    echo "<div class='col-sm'><a href='friends_finder_engine.php?id=".$u["id"]."'><input class='btn btn-success float-right' type='submit' value='Dodaj do znajomych'></a></div>";
-    echo "</div>";
-    echo "</div>";
+
+if(sizeof($users)>0) {
+    foreach($users as $u) {
+        echo "<div class='user_friend'>";
+        echo "<div class='row'>";
+        echo "<div class='col-sm'>".$u["id"]."</div>";
+        echo "<div class='col-sm'>".$u["name"]."</div>";
+        echo "<div class='col-sm'>".$u["surname"]."</div>";
+        echo "<div class='col-sm'><a href='friends_finder_engine.php?id=".$u["id"]."'><input class='btn btn-success float-right' type='submit' value='Dodaj do znajomych'></a></div>";
+        echo "</div>";
+        echo "</div>";
+    }
+}else{
+    echo "<a class='h2'>Wszyscy już są twoimi znajomymi :)</p>";
 }
 $result->free_result();
+
 ?>
 </div>
 

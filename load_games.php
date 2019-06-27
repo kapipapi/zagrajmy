@@ -1,8 +1,26 @@
+<style>
+    #players {
+        display: flex;
+    }
+
+    .player {
+        display: block;
+        width: 5em;
+    }
+
+    .player img {
+        border-radius: 2em;
+        width: 4em;
+        height: 4em;
+        object-fit: cover;
+    }
+</style>
+
 <?php
 
 require_once('connect.php');
 
-$sql = "SELECT * FROM games ORDER BY data ASC LIMIT 3";
+$sql = "SELECT * FROM games ORDER BY date ASC LIMIT 3";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
@@ -16,9 +34,9 @@ if ($result = $conn->query($sql)) {
             $game = array(
                 "id" => $row['id'],
                 "sport" => $row['sport'],
-                "place" => $row['miejsce'],
-                "date" => $row['data'],
-                "lista" => $row['lista'],
+                "place" => $row['place'],
+                "date" => $row['date'],
+                "lista" => $row['list'],
                 "info" => $row['info']
             );
             array_push($games, $game);
@@ -37,7 +55,10 @@ function getPlayer($id_list) {
     if ($result = $conn->query($playerSql)) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo $row['imie'] . " " . $row['nazwisko'];
+                echo "<div class='player col-sm text-center'>";
+                echo "<p>".$row['name']."</p>";
+                echo "<img class='shadow' src='./img/users/".$id_list.".png' />";
+                echo "</div>";
             }
         }
     }
@@ -45,8 +66,9 @@ function getPlayer($id_list) {
 
 if(sizeof($games)>0){
     echo "<h3>Gry w okolicy:</h3>";
+    echo "<div id='games'>";
     foreach($games as $g) {
-        echo "<div class='game'>";
+        echo "<div class='game shadow'>";
         echo "<h2>" . $g["sport"] . "</h2>";
         $boiska = json_decode(file_get_contents('./scripts/json/boiska.json'));
         foreach($boiska as $b) {
@@ -57,19 +79,27 @@ if(sizeof($games)>0){
             }
         }
         echo "<p>" . $g["date"] . "</p>";
-        echo "<ol>";
-        $lista = json_decode($g['lista']);
-        for($i=1; $i <= sizeof($lista); $i++) {
-            echo "<li>";
-            getPlayer($lista[$i-1]);
-            echo "</li>";
-        }
-        $iloscMiejsc = json_decode($g['info'])->teamsize;
-        for($i=sizeof($lista)+1; $i <= $iloscMiejsc; $i++) {
-            echo "<li>...</li>";
-        }
-        echo "</ol>";
+            echo "<div class='row' id='players'>";
+                $lista = json_decode($g['lista']);
+                for($i=0; $i < 2; $i++) {
+                    getPlayer($lista[$i]);
+                }
+                if(sizeof($lista)<3) {
+                    for($i=0; $i < 3-sizeof($lista); $i++) {
+                        echo "<div class='player col-sm text-center'>";
+                        echo "<p>wolne</p>";
+                        echo "<img class='shadow' src='./img/users/0.png' />";
+                        echo "</div>";
+                    }
+                }else {
+                    echo "<div class='player col-sm text-center'>";
+                    echo "<p>jeszcze".(3-sizeof($lista))."</p>";
+                    echo "<img class='shadow' src='./img/users/0.png' />";
+                    echo "</div>";
+                }
+            echo "</div>";
         echo "</div>";
     }
+    echo "</div>";
 }
 ?>

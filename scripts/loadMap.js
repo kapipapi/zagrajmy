@@ -35,6 +35,12 @@ function loadPins(boiska) {
         let popupText = "<p class='popup-name'>" + point[2] + "</p>";
         popupText += "<p class='popup-address'>Ulica: " + point[3] + "</p>";
         popupText += "<p>Kod boiska: " + point[0] + "</p>";
+        popupText += "<input class='btn btn-success' value='Zobacz info' onclick='previewSportObject(\""+point[0]+"\");'>";
         pin.bindPopup(popupText);
     }
+}
+
+function previewSportObject(boisko) {
+    let objectID = boisko;
+
 }

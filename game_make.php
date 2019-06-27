@@ -63,9 +63,13 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
 </head>
 <body>
 
-<header class='container-fluid'>
-    <a href="./index.php"><h1>ZagrajMY</h1></a>
-</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class='container-fluid'>
+        <div class="navbar-header">
+            <a class='h1' href="./index.php">ZagrajMy</a>
+        </div>
+    </div>
+</nav>
 
 <div id='main' class='container'>
     <div class='row'>
@@ -112,13 +116,13 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             </div>
             <div class="form-group">
                 <?php
-                    $friends = json_decode($_SESSION['info'])->friends;
+                    $friends = json_decode($_SESSION['info']);
                     if(sizeof($friends)>0){
                         echo "<label>Kogo ze znajomych chcesz zaprosić?</label></br>";
                         foreach($friends as $f) {
                             echo "<div class='friend'>";
-                            echo "<input class='form-check-input' type='checkbox' value='" . $f->id . "' name='friend_id[]'>";
-                            echo "<label class='form-check-label'>" . $f->name . " ". $f->surname . "</label>";
+                            echo "<input class='form-check-input' type='checkbox' value='" . $f . "' name='friend_id[]'>";
+                            echo "<label class='form-check-label'>" . $f . " ". $f . "</label>";
                             echo "</div>";
                         }
                     }

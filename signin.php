@@ -18,18 +18,18 @@ if ($conn->connect_error) {
 }
 
 //imie nazwisko
-if (empty($_POST['imie'])) {
+if (empty($_POST['name'])) {
     $_SESSION['signin_err'][1] = "Imie wymagane";
     $signin_err = true;
 } else {
-    $imie = $_POST['imie'];
+    $name = $_POST['name'];
 }
 
-if (empty($_POST['nazwisko'])) {
+if (empty($_POST['surname'])) {
     $_SESSION['signin_err'][2] = "Nazwisko wymagane";
     $signin_err = true;
 } else {
-    $nazwisko = $_POST['nazwisko'];
+    $surname = $_POST['surname'];
 }
 
 //EMAIL
@@ -92,40 +92,33 @@ $json_user_sports = json_encode($user_sports);
 // BIRTHDAY
 $user_birthday = $_POST['dateofbirth'];
 
-// INFO
-class Info{
-    public $friends = array();
-    public $other = "";
-}
-
-$user_info = new Info();
-$infoJSON = json_encode($user_info);
-
 // ACCEPTATION
 if (!$signin_err) {
     $sql = "INSERT INTO `users` (
         `id`,
-        `imie`,
-        `nazwisko`,
+        `name`,
+        `surname`,
         `login`,
         `email`,
-        `haslo`,
-        `sporty`,
-        `urodziny`,
-        `info`
+        `pass`,
+        `sports`,
+        `birthday`,
+        `info`,
+        `friends`
         ) VALUES (
             NULL,
-            '$imie',
-            '$nazwisko',
+            '$name',
+            '$surname',
             '$login', 
             '$email',
             '$pass',
             '$json_user_sports',
             '$user_birthday',
-            '$infoJSON'
+            '[]',
+            '[]'
             );";
     if (!$conn->query($sql)) {
-        $_SESSION['signin_err'][0] = "Operacja nie powiodła się :(";
+        $_SESSION['signin_err'][0] = "Operacja nie powiodła się :(". $sql;
     } else {
         $_SESSION['signin_err'][0] = "Operacja powiodła się!";
     }
