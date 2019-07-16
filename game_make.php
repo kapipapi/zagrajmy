@@ -24,19 +24,30 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     <link rel="stylesheet" href="style.css" type="text/css" />
     <style>
+
+    #sport_selector {
+        /*  */
+    }
+
     .btn {
         width: 40%;
     }
 
     .sport_radio {
-        width: 100px;
-        height: 100px;
+        width: 7vmax;
+        height: 7vmax;
         border: 1px solid #000;
+        border-radius: 1em;
         cursor: pointer;
+        padding: 0px 1vmax;
     }
 
     .sport_radio img {
-        width: 70px;
+        width: 5vmax;
+    }
+
+    .sport_radio p {
+        text-align: center;
     }
 
     .sport_radio input[type=radio] { 
@@ -47,12 +58,13 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
     }
 
     .sport_radio input[type=radio]:checked + img + p{
-        color: green;
         font-weight: bold;
     }
 
+    .sport.radio input[type=radio]:checked 
+
     .custom-range {
-        width: 80%;
+        width: 70%;
     }
     
     .friend{
@@ -84,24 +96,28 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             unset($_SESSION['make_game_err']);
             ?>
             </div>
-            <div class="form-group">
+            <!-- SPORT SELECTION -->
+            <div id='sport_selector' class="form-group">
                 <?php
                 foreach(json_decode(file_get_contents('./scripts/json/sporty.json')) as $s) {
-                    echo" <label class='sport_radio'><input type='radio' name='sport' value='$s'><img src='./img/sports/$s.png'/><p>$s</p></label>";
+                    echo" <label class='sport_radio shadow'><input type='radio' name='sport' value='$s'><img src='./img/sports/$s.png'/><p>$s</p></input></label>";
                 }
                 ?>
             </div>
             <hr/>
+            <!-- TEAMSIZE SLIDER  -->
             <div class="form-group">
                 <label>Ile osób będzie uczestniczyło w grze?</label>
                 <input id="playersInput" type="range" class="custom-range" min="2" max="10" name="teamsize">
                 <span id='counter_show'>6</span>
             </div>
             <hr/>
+            <!-- DATE SELECT -->
             <div class="form-group">
                 <label>Kiedy odbędzie się rozgrywka?</label></br>
                 <input type="date" name="dateofgame">
             </div>
+            <!-- PLACE SELECT -->
             <div class="form-group">
                 <label>Gdzie chcecie grać?</label></br>
                 <select id='place' name='place'>

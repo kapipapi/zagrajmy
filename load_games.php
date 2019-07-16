@@ -20,7 +20,7 @@
 
 require_once('connect.php');
 
-$sql = "SELECT * FROM games ORDER BY date ASC LIMIT 3";
+$sql = "SELECT * FROM games ORDER BY date ASC LIMIT 4";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {

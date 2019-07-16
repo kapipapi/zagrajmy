@@ -13,7 +13,6 @@ if ($conn->connect_error) {
     $make_game_err = true;
     $_SESSION['make_game_err'][0] = "MySQL problem";
 }
-$make_game_err = false;
 
 //SPORT
 if(empty($_POST['sport'])) {
