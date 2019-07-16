@@ -28,6 +28,13 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             border: 1px solid black;
             margin: 1vh;
         }
+
+        .user_list {
+            border-radius: 2em;
+            width: 4em;
+            height: 4em;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +81,7 @@ if(sizeof($users)>0) {
     foreach($users as $u) {
         echo "<div class='user_friend'>";
         echo "<div class='row'>";
+        echo "<div class='col-sm'><img class='shadow user_list' src='./img/users/".$u["id"].".png' /></div>";
         echo "<div class='col-sm'>".$u["id"]."</div>";
         echo "<div class='col-sm'>".$u["name"]."</div>";
         echo "<div class='col-sm'>".$u["surname"]."</div>";
