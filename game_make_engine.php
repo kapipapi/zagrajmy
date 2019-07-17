@@ -56,7 +56,7 @@ if(!empty($_POST['friend_id'])){
 $playerListJSON = json_encode($playerList);
 
 //Maker info
-$infoJSON->makername = $_SESSION['name'];
+$infoJSON->makerid = $_SESSION['id'];
 $infoJSON->makeremail = $_SESSION['email'];
 $infoJSON->teamsize = $teamsize;
 $infoTEXT = json_encode($infoJSON);

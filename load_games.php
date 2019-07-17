@@ -36,7 +36,7 @@ if ($result = $conn->query($sql)) {
                 "sport" => $row['sport'],
                 "place" => $row['place'],
                 "date" => $row['date'],
-                "lista" => $row['list'],
+                "list" => $row['list'],
                 "info" => $row['info']
             );
             array_push($games, $game);
@@ -80,23 +80,26 @@ if(sizeof($games)>0){
         }
         echo "<p>" . $g["date"] . "</p>";
             echo "<div class='row' id='players'>";
-                $lista = json_decode($g['lista']);
-                for($i=0; $i < 2; $i++) {
-                    getPlayer($lista[$i]);
+                $list = json_decode($g['list']);
+                for($i=0; $i < 3; $i++) {
+                    getPlayer($list[$i]);
                 }
-                if(sizeof($lista)<3) {
-                    for($i=0; $i < 3-sizeof($lista); $i++) {
+                if(sizeof($list)<3) {
+                    for($i=0; $i < 3-sizeof($list); $i++) {
                         echo "<div class='player col-sm text-center'>";
                         echo "<p>wolne</p>";
+                        echo "<a href='joining_game_engine.php?id=".$g['id']."'>";
                         echo "<img class='shadow' src='./img/users/0.png' />";
+                        echo "</a>";
                         echo "</div>";
                     }
-                }else {
-                    echo "<div class='player col-sm text-center'>";
-                    echo "<p>jeszcze".(3-sizeof($lista))."</p>";
-                    echo "<img class='shadow' src='./img/users/0.png' />";
-                    echo "</div>";
                 }
+                // }else {
+                //     echo "<div class='player col-sm text-center'>";
+                //     echo "<p>".(sizeof($list)-3)."</p>";
+                //     echo "<img class='shadow' src='./img/users/0.png' />";
+                //     echo "</div>";
+                // }
             echo "</div>";
         echo "</div>";
     }
