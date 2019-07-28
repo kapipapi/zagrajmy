@@ -6,6 +6,10 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
     header("Location: index.php");
 }
 
+if (!isset($_GET['id'])){
+    header("Location: index.php");
+}
+
 require_once('connect.php');
 
 $game_id = $_GET['id'];
@@ -44,7 +48,7 @@ if($max_teamsize > $list_count) {
     foreach($list as $id) {
         if($id == $_SESSION['id']){
             $success = FALSE;
-            $_SESSION['joining_game_error'] = "Jesteś już na liście w wybranej grze.";
+            $_SESSION['user_info'] = "Jesteś już na liście w wybranej grze.";
             break;
         }
     }
@@ -55,7 +59,7 @@ if($max_teamsize > $list_count) {
     }
     header("Location: user_panel.php");
 } else {
-    $_SESSION['joining_game_error'] = "Nie mozna dołaczyć do gry. Lista jest pełna.";
+    $_SESSION['user_info'] = "Nie mozna dołaczyć do gry. Lista jest pełna.";
 }
 
 ?>

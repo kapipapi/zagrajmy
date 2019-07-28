@@ -181,3 +181,11 @@ footer {
 .err {
     color: rgb(255, 95, 95);
 }
+
+.window-popup {
+    display: block;
+    /* transform-origin: 50% 50%;
+    top: 50%;
+    left: 50%; */
+    border: 1px solid black;
+}

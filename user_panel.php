@@ -70,18 +70,8 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
 </head>
 <body>
     
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class='container-fluid'>
-        <div class="navbar-header">
-            <a class='h1' href="./index.php">ZagrajMy</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href='game_make.php'>Strórz grę!</a></li>
-            <li><a href='friends_finder.php'>Znajdź znajomych!</a></li>
-            <li><a href='logout.php'>Wyloguj się</a></li>
-        </ul>
-    </div>
-</nav>
+<!-- LOAD NAVIGATION BAR -->
+<?php require_once('./parts/load_nav.php'); ?>
 
 <div id='main' class='container-fluid'>
     <div class='row'>
@@ -107,14 +97,14 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
                 echo "</div>";
 
                 echo "<div class='col-sm-4'>";
-                    require_once('load_friends.php');
+                    require_once('./parts/load_friends.php');
                 echo "</div>";
 
             echo "</div>";
 
             echo "<hr/>";
 
-            require_once('load_games.php');
+            require_once('./parts/load_games.php');
             
             ?>
         </div>

@@ -92,6 +92,9 @@ $json_user_sports = json_encode($user_sports);
 // BIRTHDAY
 $user_birthday = $_POST['dateofbirth'];
 
+// PHOTO
+
+
 // ACCEPTATION
 if (!$signin_err) {
     $sql = "INSERT INTO `users` (
@@ -114,7 +117,7 @@ if (!$signin_err) {
             '$pass',
             '$json_user_sports',
             '$user_birthday',
-            '[]',
+            '{"photo": "default.png"}',
             '[]'
             );";
     if (!$conn->query($sql)) {

@@ -31,16 +31,10 @@ if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
     }
     </style>
 </head>
-
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <div class='container-fluid'>
-            <div class="navbar-header">
-                <a class='h1' href="./index.php">ZagrajMy</a>
-            </div>
-        </div>
-    </nav>
+    <!-- LOAD NAVIGATION BAR -->
+    <?php require_once('./parts/load_nav.php'); ?>
 
     <div id='main' class='container-fluid'>
         <div class='row'>
@@ -74,7 +68,7 @@ if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
                             <?php
                                 if(!empty($_SESSION['login-err'])){
                                     echo "<small class='err'>".$_SESSION['login-err']."</small>";
-
+                                    unset($_SESSION['login-err']);
                                 }
                             ?>
                             <div class="form-group">
@@ -137,6 +131,7 @@ if (isset($_SESSION['email']) || isset($_SESSION['pass'])) {
                                             echo "<small class='err'>$err</small><br/>";
                                         }
                                     }
+                                    unset($_SESSION['signin_err']);
                                 }
                                 ?>
                                 <input class="btn btn-light" type="submit" value="Zarejestruj się">

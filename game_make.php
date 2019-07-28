@@ -75,13 +75,8 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class='container-fluid'>
-        <div class="navbar-header">
-            <a class='h1' href="./index.php">ZagrajMy</a>
-        </div>
-    </div>
-</nav>
+<!-- LOAD NAVIGATION BAR -->
+<?php require_once('./parts/load_nav.php'); ?>
 
 <div id='main' class='container'>
     <div class='row'>
