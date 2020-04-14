@@ -127,7 +127,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['pass'])) {
             </div>
             <div class="form-group">
                 <?php
-                    $friends = json_decode($_SESSION['info']);
+                    $friends = json_decode($_SESSION['friends']);
                     if(sizeof($friends)>0){
                         echo "<label>Kogo ze znajomych chcesz zaprosić?</label></br>";
                         foreach($friends as $f) {
